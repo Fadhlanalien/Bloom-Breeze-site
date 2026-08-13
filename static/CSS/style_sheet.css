@@ -1,0 +1,498 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+    background-color: rgb(220, 208, 191);
+    ;
+    width: 100%;
+}
+
+
+/* * {
+    margin:0;
+} */
+
+
+
+/* common things */
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem auto;
+}
+
+.container-duplicate {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem auto;
+    background-color: brown;
+}
+
+.text-center {
+    width: 100%;
+    text-align: center;
+    /* background-color: blue; */
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    /* background-color: aquamarine; */
+}
+
+.row-duplicate {
+    display: flex;
+    flex-wrap: wrap;
+    /* background-color: aquamarine; */
+    width: 85%;
+    padding: 0;
+    margin: 1rem auto;
+}
+
+.justify-content-center {
+    display: block;
+    width: 80%;
+    margin: 0.5rem auto;
+}
+
+.collapse {
+    display: flex;
+    flex-direction: row;
+}
+
+/* top, bottom margin */
+.mt-3 {
+    margin-top: 1rem;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+.mt-5 {
+    margin-top: 2.0rem;
+}
+
+.mb-3 {
+    margin-bottom: 1rem;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem;
+}
+
+.mb-5 {
+    margin-bottom: 2.0rem;
+}
+
+.col-md-10 {
+    width: 90%;
+    margin: 0.5rem auto;
+    /* background-color: aqua; */
+}
+
+/* elemet width management */
+
+
+.col-md-8-original {
+    width: 60%;
+}
+
+.col-md-8 {
+    width: 60%;
+    margin: 0.5rem auto;
+}
+
+
+.col-md-6 {
+    display: block;
+    width: 45%;
+    margin: 0.5rem auto;
+    padding: 0.5rem auto;
+    /* background-color: blue; */
+}
+
+.col-md-4 {
+    width: 30%;
+    /* background-color: blue; */
+    margin: 0.5rem auto;
+}
+
+.ms-auto {
+    margin-top: auto;
+    margin-left: auto;
+}
+
+.d-grid {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0.5rem auto;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+
+/* form */
+.form-header h2,
+.form-header p {
+    margin: 0;
+}
+
+.form-header {
+    background-color: rgb(0, 0, 100);
+    color: rgb(220, 208, 191);
+    margin: 0;
+    padding: 1rem 1rem;
+    text-align: center;
+
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    margin: 0.5rem auto;
+    padding: 0.5rem;
+}
+
+.form-label {
+    display: block;
+    width: 100%;
+    margin: 0.5rem auto;
+}
+
+.form-select {
+    display: block;
+    width: 100%;
+    margin: 0.5rem auto;
+    padding: 0.5rem;
+}
+
+/* navbar */
+.navbar {
+    align-items: center;
+    padding: 1rem 1rem;
+    margin: 0;
+}
+
+.bg-dark {
+    background-color: rgb(5, 5, 54);
+}
+
+.navbar-dark {
+    color: rgb(220, 208, 191);
+}
+
+.navbar-nav {
+    /* margin: 0.5rem 1rem; */
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0;
+}
+
+.nav-item-original {
+    margin: 0.5rem 1rem;
+    list-style-type: none;
+    padding: 0.5rem 1rem;
+}
+
+.nav-item {
+    margin: 0.5rem auto;
+    list-style-type: none;
+    padding: 0.5rem 1rem;
+}
+
+.navbar-brand {
+    color: rgb(220, 208, 191);
+    text-decoration: none;
+    margin: auto 1rem;
+    /* background-color: blue; */
+}
+
+/* code by claude
+/* hamburger menu button - hidden on large screens, shown only on small screens (see media query below) */
+.navbar-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 1.75rem;
+    height: 1.25rem;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.navbar-toggle-bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: rgb(220, 208, 191);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* turn the 3 bars into an "X" once the menu is open */
+.navbar-toggle.open .navbar-toggle-bar:nth-child(1) {
+    transform: translateY(0.5rem) rotate(45deg);
+}
+
+.navbar-toggle.open .navbar-toggle-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.navbar-toggle.open .navbar-toggle-bar:nth-child(3) {
+    transform: translateY(-0.5rem) rotate(-45deg);
+}
+/* end of claude's code
+
+
+/* button */
+.btn {
+    color: rgb(223, 212, 195);
+    display: inline-block;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: navy;
+    color: rgb(223, 212, 195);
+    padding: 0.5rem 1rem;
+}
+
+.btn-secondary {
+    background-color: gray;
+    color: white;
+    padding: 0.5rem 1rem;
+
+}
+
+.btn-outline-dark {
+    border: solid black;
+    color: black;
+    padding: 0.5rem 1rem;
+}
+
+.btn-success {
+    color: rgb(223, 212, 195);
+    background-color: rgb(0, 150, 100);
+    padding: 0.5rem 1rem;
+}
+
+.btn-alert {
+    color: rgb(223, 212, 195);
+    background-color: rgb(250, 100, 0);
+    padding: 0.5rem 1rem;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.65;
+}
+
+
+
+/* image */
+
+.img-small {
+    width: 15%;
+    display: block;
+    margin: 0.5rem 1rem;
+}
+
+.img-medium {
+    width: 40%;
+    display: block;
+    margin: 0.5rem 1rem;
+}
+
+.img-gallery {
+    float: left;
+    width: 15%;
+    border: 0.25rem solid black;
+    margin: 0.5rem 0.5rem;
+}
+
+.img-gallery-img {
+    width: 100%;
+    height: 20%;
+}
+
+
+
+/* card */
+.card-body {
+    width: 80%;
+    margin: 1rem auto;
+    padding: 0.5rem 1rem;
+    background-color: rgb(228, 225, 218);
+    color: black;
+}
+
+.card-title {
+    color: navy;
+    font-size: large;
+}
+
+/* flash message */
+.flash-message {
+    text-align: center;
+    margin: 0.2rem 1rem;
+    background-color: blue;
+}
+
+.flash-box {
+    display: block;
+    background-color: rgb(168, 150, 125);
+    width: 80%;
+    margin: 0.5rem auto;
+    padding: 0.5rem 1rem;
+    list-style-type: none;
+}
+
+/* products */
+
+.product-container {
+    display: flex;
+    gap: 2rem;
+    width: 90%;
+    margin: 2rem auto;
+}
+
+.product-image {
+    width: 30%;
+    /* background: white; */
+    /* display: flex; */
+    justify-content: center;
+}
+
+.product-info {
+    /* background: white; */
+    width: 40%;
+}
+
+.product-actions {
+    width: 30%;
+    /* background-color: rgb(220, 208, 191); */
+    /* background: white; */
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.img-product-detail{
+    width:80%;
+    height:auto;
+    /* background-color: gray; */
+    object-fit:contain;
+}
+
+.product-content {
+    display: block;
+    width: 100%;
+    margin: 0.5rem auto;
+    padding: 0.5rem;
+}
+
+.selected-image{
+    width: 100%;
+    background-color: gray;
+}
+
+
+/* ============================================
+   RESPONSIVE STYLES FOR SMALL SCREENS
+   Everything below only applies at 768px and
+   narrower, so large-screen layout is untouched.
+   ============================================ */
+@media (max-width: 768px) {
+
+    /* let the nav wrap so the hamburger button sits on its own row
+       above the (collapsed) links, instead of squeezing them all in a line */
+    .navbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* show the hamburger button (it's display:none by default for desktop) */
+    .navbar-toggle {
+        display: flex;
+    }
+
+    /* the link list is hidden until the hamburger button is clicked */
+    .navbar-nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* JS adds/removes this class on click to open the menu */
+    .navbar-nav.open {
+        display: flex;
+    }
+
+    .nav-item {
+        width: 100%;
+        margin: 0.25rem 0;
+        text-align: center;
+    }
+
+    /* the containers that wrap the nav links (col-md-10 / container / ms-auto
+       used across the different pages) should take the full row once stacked */
+    .navbar .col-md-10,
+    .navbar .container,
+    .navbar .ms-auto {
+        width: 100%;
+    }
+
+    /* general layout columns become full-width and stack instead of
+       sitting side by side, so content doesn't get squeezed on narrow screens */
+    .col-md-8,
+    .col-md-6,
+    .col-md-4 {
+        width: 90%;
+    }
+
+    .row,
+    .row-duplicate {
+        flex-direction: column;
+    }
+
+    /* product detail layout: image/info/actions stack instead of 3 columns */
+    .product-container {
+        flex-direction: column;
+        width: 95%;
+    }
+
+    .product-image,
+    .product-info,
+    .product-actions {
+        width: 100%;
+    }
+
+    /* image gallery: 2 per row instead of the ~6-per-row float layout */
+    .img-gallery {
+        width: 45%;
+    }
+
+    .img-small,
+    .img-medium {
+        width: 60%;
+        margin: 0.5rem auto;
+    }
+
+    .img-product-detail {
+        width: 100%;
+    }
+}

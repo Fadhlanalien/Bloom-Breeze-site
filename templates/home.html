@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <link rel="stylesheet" href="{{url_for('static' , filename='CSS/style_sheet.css')}}">
+    <script src="{{url_for('static', filename='JS/nav_toggle.js')}}"></script>
+</head>
+
+<body>
+    <nav class="navbar bg-dark navbar-dark">
+        <button type="button" class="navbar-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="navbar-toggle-bar"></span>
+            <span class="navbar-toggle-bar"></span>
+            <span class="navbar-toggle-bar"></span>
+        </button>
+        <div class="col-md-10">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <select class="btn" onchange="location = this.value;">
+                        <option value="{{url_for('home')}}" {% if selected == 'select' %}selected{% endif %}></option>
+
+                        <option value="{{ url_for('all_categories') }}" {% if selected=='all' %}selected{% endif %}>
+                            All Categories
+                        </option>
+
+                        <option value="{{ url_for('kid_items') }}" {% if selected=='kids' %}selected{% endif %}>
+                            Kids Item
+                        </option>
+
+                        <option value="{{ url_for('men_clothing') }}" {% if selected=='men' %}selected{% endif %}>
+                            Men's Clothing
+                        </option>
+
+                        <option value="{{ url_for('women_clothing') }}" {% if selected=='women' %}selected{% endif %}>
+                            Women's Clothing
+                        </option>
+                    </select>
+
+
+                </li>
+                <li class="nav-item"><a class="btn" href="/bundle deals">Bundle Deals</a></li>
+                <li class="nav-item"><a class="btn" href="/special offers">Special Offers</a></li>
+                <li class="nav-item"><a class="btn" href="/">Home</a></li>
+                <li class="nav-item"><a class="btn" href="/login">Login</a></li>
+                <li class="nav-item"><a class="btn" href="/admin_login">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div>
+        <div class="img-gallery">
+            <img src="{{url_for('static', filename='images/toy01.jpeg')}}" alt="Toy" class="img-gallery-img">
+            <p>some text</p>
+        </div>
+        <div class="img-gallery">
+            <img src="{{url_for('static', filename='images/toy02.jpeg')}}" alt="Toy" class="img-gallery-img">
+            <p>some text</p>
+        </div>
+        <div class="img-gallery">
+            <img src="{{url_for('static', filename='images/t-shirt01.jpeg')}}" alt="Toy" class="img-gallery-img">
+            <p>some text</p>
+        </div>
+        <div class="img-gallery">
+            <img src="{{url_for('static', filename='images/t-shirt02.jpeg')}}" alt="Toy" class="img-gallery-img">
+            <p>some text</p>
+        </div>
+        <div class="img-gallery">
+            <img src="{{url_for('static', filename='images/women_suit01.jpeg')}}" alt="Toy" class="img-gallery-img">
+            <p>some text</p>
+        </div>
+    </div>
+</body>
+
+</html>

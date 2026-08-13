@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <title>store</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='CSS/style_sheet.css')}}">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+
+            <a class="navbar-brand" href="#">Bloom Breeze</a>
+
+            <div class="collapse ms-auto">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="btn btn-secondary" href="/dashboard">Back to dashboard</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <h3>Bloom Breeze Store</h3>
+
+    {% for product in products_dictionary.values() %}
+    <div class="img-gallery">
+         <img src="{{url_for('static', filename=product['file_path'])}}" alt="{{product['name']}}" class="img-gallery-img">
+        <p>{{product['name']}}</p>
+        <form action="/product_detail" method="POST">
+            <input type="hidden" name="product_id" value="{{product['product_id']}}">
+            <button >Select</button>
+        </form>
+    </div>
+    {% endfor %}
+
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin dashboard</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='CSS/style_sheet.css')}}">
+    <script src="{{url_for('static', filename='JS/nav_toggle.js')}}"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-dark bg-dark">
+        <button type="button" class="navbar-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="navbar-toggle-bar"></span>
+            <span class="navbar-toggle-bar"></span>
+            <span class="navbar-toggle-bar"></span>
+        </button>
+        <div class="container">
+            <a class="navbar-brand" href="#">Bloom & Breeze</a>
+            <div class="ms-auto">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="btn btn-primary" href="/admin_logout">logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="flash-box">
+
+            <div>
+                Welcome, {{full_name}}({{admin_name}})
+            </div>
+            <div>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                    <li>{{message}}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+
+        <div class="row-duplicate">
+            <div class="col-md-4 mb-4">
+                <div class="card-body">
+                    <h3 class="card-title">Ordered details</h3>
+                    <p>view the order details</p>
+                    <a class="btn btn-primary" href="/admin_order_details">view Orders</a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card-body">
+                    <h3 class="card-title">unknown</h3>
+                    <p>nothing for now</p>
+                    <a class="btn btn-secondary" href="/track_item">unknown</a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card-body">
+                    <h3 class="card-title">Update Profile</h3>
+                    <p>Edit my profile and preferences</p>
+                    <a class="btn btn-outline-dark" href="/edit_profile">Edit Profile</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="{{url_for('static', filename='JS/force_reload.js')}}"></script>
+</body>
+
+</html>

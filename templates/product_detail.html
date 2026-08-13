@@ -1,0 +1,197 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>product_detail</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='CSS/style_sheet.css')}}">
+    <script src="{{url_for('static', filename='JS/nav_toggle.js')}}"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-dark bg-dark">
+        <button type="button" class="navbar-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="navbar-toggle-bar"></span>
+            <span class="navbar-toggle-bar"></span>
+            <span class="navbar-toggle-bar"></span>
+        </button>
+        <div class="container">
+
+            <a class="navbar-brand" href="#">Bloom Breeze</a>
+
+            <div class="collapse ms-auto">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="btn btn-secondary" href="/view_products">back to store</a></li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="btn btn-secondary" href="/dashboard">Dashboard</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <div class="product-container">
+
+        <div class="product-image">
+            <!-- {% if product_detail.selected_image %}
+            <img class="img-product-detail"
+                src="{{url_for('static', filename='images/' + product_detail.selected_image)}}" alt="t-shirt">
+
+            {% endif %}
+
+            {% for file_path in product_detail.file_paths %}
+
+
+            <img class="product-thumbnail img-product-detail"
+                src="{{url_for('static', filename='images/' + file_path)}}" alt="t-shirt" style="width: 10%;"
+                onclick="changeimage(this)">
+
+            {% endfor %} -->
+
+
+            <!-- Main / large image -->
+            <div class="img-product-detail">
+                <img id="main-product-image" src="{{ url_for('static', filename= product_detail.selected_image) }}"
+                    alt="{{ product_detail.name }}" style="width: 100%;">
+            </div>
+
+
+            <!-- Small thumbnails -->
+            <div>
+                {% for file_path in product_detail.file_paths %}
+
+                <img class="product-thumbnail" src="{{ url_for('static', filename= file_path) }}"
+                    alt="{{ product_detail.name }}" onclick="changeimage(this)" style="width: 10%;">
+
+                {% endfor %}
+            </div>
+            
+               <div >
+
+                    {% if product_detail.file_paths_video %}
+                        {% for file_path_video in product_detail.file_paths_video %}
+
+                            <video controls src="{{url_for('static', filename= file_path_video)}}"></video>
+
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+        </div>
+
+        <div class="product-info">
+
+            <h3>product_detail</h3>
+
+            <div class="product-content">
+                product name - {{product_detail.name}}
+            </div>
+
+            <div class="product-content">
+                <br> detail - {{product_detail.detail}}
+            </div>
+
+            <div class="product-content">
+                colour - {{product_detail.colour}}
+            </div>
+
+            <div class="product-content">
+                Size - {{product_detail.size}}
+            </div>
+
+            <div class="product-content">
+                price - {{product_detail.price}}
+            </div>
+
+            <div class="product-content">
+                {% for file_path in product_detail.file_paths %}
+
+                ifile paths: {{file_path}}
+
+                {% endfor %}
+            </div>
+
+
+        </div>
+
+        <div class="product-actions">
+
+            <form action="/buy_now" method="POST">
+
+                <div>
+                    <label class="form-label" for="size">Size</label>
+                    <input class="form-control" type="text" id="size" name="size" value="{{product_detail.size}}">
+                </div>
+
+
+                <div>
+                    <label class="form-label" for="colour">colour</label>
+                    <input class="form-control" type="text" id="colour" name="colour" value="{{product_detail.colour}}">
+                </div>
+
+
+                <div>
+                    <label class="form-label" for="quantity">quantity</label>
+                    <input class="form-control" id="quantity" type="number" min="1" value="1" name="quantity">
+                </div>
+
+                <div>
+                    <input type="hidden" value="{{product_detail.id}}" name="product_id">
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-primary d-grid">Buy now</button>
+                </div>
+            </form>
+            <div>
+                <a href="/cart" class="btn btn-secondary d-grid text-center">Add to Cart</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+    <!-- <h3>product_detail</h3>
+    <p>product name - {{product_detail.name}}
+        <br> detail - {{product_detail.detail}}
+        <br> colour - {{product_detail.colour}}
+        <br> Size - {{product_detail.size}}
+        <br> price - {{product_detail.price}}
+
+        <br> file-path - {{product_detail.file_path}}
+
+    </p>
+    <img src="{{url_for('static', filename=product_detail.file_path)}}" alt="t-shirt" class="img-product-detail">
+
+    <a href="/cart" class="btn btn-secondary">Add to Cart</a>
+
+    <form action="/buy_now" method="POST">
+
+        <label for="size">Size</label>
+        <input type="text" id="size" name="size" value="{{product_detail.size}}">
+
+        <br>
+        <label for="colour">colour</label>
+        <input type="text" id="colour" name="colour" value="{{product_detail.colour}}">
+
+        <br>
+        <label for="quantity">quantity</label>
+        <input id="quantity" type="number" min="1" value="1" name="quantity">
+
+        <input type="hidden" value="{{product_detail.id}}" name="product_id">
+        <button type="submit" class="btn btn-primary">Buy now</button>
+    </form> -->
+
+    <script src="{{url_for('static', filename='JS/select_image.js')}}"></script>
+
+</body>
+
+</html>

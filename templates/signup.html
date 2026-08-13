@@ -1,0 +1,86 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='CSS/style_sheet.css')}}">
+</head>
+
+<body>
+    <div class="card-body">
+
+        <div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{message}}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+        </div>
+
+        <h1 class="text-center mb-4">Create Your Account</h1>
+
+        <div>
+            <form action="/signup" method="post">
+
+                <div class="mb-3">
+                    <label class="form-label" for="fullname">Full Name</label>
+                    <input class="form-control" type="text" id="fullname" name="full_name" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="mobile_number">Mobile Number</label>
+                    <input class="form-control" type="text" id="mobile_number" name="mobile_number" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="address_line01">Address Line 01</label>
+                    <input class="form-control" type="text" id="address_line01" name="address_line01" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="address_line02">Address Line 02</label>
+                    <input class="form-control" type="text" id="address_line02" name="address_line02">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="city">City</label>
+                    <input class="form-control" type="text" id="city" name="city" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="country">Country</label>
+                    <input class="form-control" type="text" id="country" name="country" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="email">Email</label>
+                    <input class="form-control" type="email" id="email" name="email" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="userame">Username</label>
+                    <input class="form-control" type="text" id="username" name="username" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="password">Create Password</label>
+                    <input class="form-control" type="password" id="password" name="password" required>
+                </div>
+
+                <div class="d-grid">
+                    <button class="btn btn-primary" type="submit">Signup</button>
+                </div>
+
+                <div class="mt-3 text-center">
+                    already have an account <a href="/login">Login here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

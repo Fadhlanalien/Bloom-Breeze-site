@@ -1,0 +1,65 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>order details</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='CSS/style_sheet.css')}}">
+    <script src="{{url_for('static', filename='JS/nav_toggle.js')}}"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <button type="button" class="navbar-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="navbar-toggle-bar"></span>
+            <span class="navbar-toggle-bar"></span>
+            <span class="navbar-toggle-bar"></span>
+        </button>
+        <div class="container">
+            <a class="navbar-brand" href="#">Bloom & Breeze</a>
+            <div class="ms-auto">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="btn btn-secondary" href="/admin_dashboard">Go back to dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <h3>this page is for order details</h3>
+
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>User ID</th>
+                <th>product ID</th>
+                <th>Shipping ID</th>
+                <th>quantity</th>
+                <th>total price</th>
+                <th>status</th>
+                <th>Order Date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order[0] }}</td>
+                <td><a href="/admin_customer_detail/{{order[1]}}">{{ order[1] }}</a></td>
+                <td><a href="/admin_product_detail/{{order[2]}}">{{ order[2] }}</a></td>
+                <td><a href="/admin_shipping_detail/{{order[3]}}">{{ order[3] }}</a></td>
+                <td>{{ order[4] }}</td>
+                <td>{{ order[5] }}</td>
+                <td>{{ order[6] }}</td>
+                <td>{{ order[7] }}</td>
+                <td>
+                    <a href="/order/{{ order.id }}">View</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

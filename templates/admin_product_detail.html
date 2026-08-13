@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin product detail</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='CSS/style_sheet.css')}}">
+    <script src="{{url_for('static', filename='JS/nav_toggle.js')}}"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-dark bg-dark">
+        <button type="button" class="navbar-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="navbar-toggle-bar"></span>
+            <span class="navbar-toggle-bar"></span>
+            <span class="navbar-toggle-bar"></span>
+        </button>
+        <div class="container">
+            <a class="navbar-brand" href="#">Bloom & Breeze</a>
+            <div class="ms-auto">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="btn btn-secondary" href="/admin_order_details">Go back to order
+                            details</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <h3>product detail</h3>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Brand</th>
+                <th>Name</th>
+                <th>description</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>{{ product[0] }}</td>
+                <td>{{ product[1] }}</td>
+                <td>{{ product[2] }}</td>
+                <td>{{ product[3] }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <img src="{{url_for('static', filename=product[4] )}}" alt="image of product">
+    </div>
+
+</body>
+
+</html>

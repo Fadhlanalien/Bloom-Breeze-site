@@ -1,0 +1,57 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin login</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='CSS/style_sheet.css')}}">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="justify-content-center">
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Admin Login</h3>
+
+                    <div>
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        <ul>
+                            {% for message in messages %}
+                            <li>{{message}}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+
+                    <form action="/admin_login" method="POST">
+                        <div>
+                            <label class="form-label" for="admin_name">adminName</label>
+                            <input class="form-control" type="text" id="admin_name" name="admin_name">
+                        </div>
+
+                        <div>
+                            <label class="form-label" for="password">Password</label>
+                            <input class="form-control" type="password" id="password" name="password">
+                        </div>
+
+                        click here to
+                        <a href="/admin_signup">sign-up</a>
+
+                        <br>
+                        <div class="d-grid">
+                            <button class="btn btn-primary" type="submit">Login</button>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

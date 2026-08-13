@@ -1,0 +1,50 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edite-shipping-address</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='CSS/style_sheet.css')}}">
+</head>
+
+<body>
+
+
+
+    <div class="card-body">
+
+        <h3 class="card-title text-center">Edit your shipping address</h3>
+
+        <form action="/edit_shipping_address" method="post">
+
+
+            <div class="mb-3">
+                <label for="address_line01" class="form-label">Address line01</label>
+                <input id="address_line01" type="text" name="address_line01" class="form-control"
+                    value="{{shipping_data.address_line01}}">
+            </div>
+
+
+            <div class="mb-3">
+                <label for="address_line02" class="form-label">Address line02</label>
+                <input id="address_line02" type="text" name="address_line02" class="form-control"
+                    value="{{shipping_data.address_line02}}">
+            </div>
+
+            <div class="mb-3">
+                <label for="city" class="form-label">City</label>
+                <input id="city" type="text" name="city" class="form-control" value="{{shipping_data.city}}">
+            </div>
+
+            <div class="mb-3">
+                <label for="country" class="form-label">Country</label>
+                <input id="country" type="text" name="country" class="form-control" value="{{shipping_data.country}}">
+            </div>
+
+            <br>
+            <button type="submit" class="btn btn-primary">update Address</button>
+            <a href="/place_order" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</body>
+
+</html>
