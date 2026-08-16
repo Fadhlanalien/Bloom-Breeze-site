@@ -195,8 +195,10 @@ def admin_signup():
                         (full_name, email, mobile_number, address_line01, address_line02, city, country, admin_name,
                          password, admin_code))
                     conn.commit()
-
-        return redirect(url_for('admin_login'))
+                flash("You have successfully signed-up, login to continue")
+            return redirect(url_for('admin_login'))
+        else:
+            flash("Invalid admin code")
 
     return render_template('admin_signup.html')
 
