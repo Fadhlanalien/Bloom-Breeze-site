@@ -329,7 +329,7 @@ def login():
                         flash("Incorrect Password")
                 else:
                     flash("Invalid username")
-    print("hellow, this is just for test")
+    print("hello, this is just for test")
 
     return render_template('login.html')
 
