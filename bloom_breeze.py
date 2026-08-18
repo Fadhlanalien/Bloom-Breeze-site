@@ -313,6 +313,8 @@ def women_clothing():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    print("LOGIN FUNCTION CALLED", flush=True)
+    
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
