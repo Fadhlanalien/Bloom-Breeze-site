@@ -130,6 +130,13 @@ The application can then be accessed through the local address displayed by Flas
 
 The application can also be run using Gunicorn:
 
+### 1. Run the init_db
+
+```bash
+python init_db.py
+```
+
+### 2. Run the application
 ```bash
 gunicorn app:app
 ```

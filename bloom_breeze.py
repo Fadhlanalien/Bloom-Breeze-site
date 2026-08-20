@@ -139,7 +139,7 @@ def database():
                 file_path_video TEXT NOT NULL,
                 FOREIGN KEY (product_id) REFERENCES products(id) )''')
             
-
+            print("database funtion running")
             conn.commit()
 
 
