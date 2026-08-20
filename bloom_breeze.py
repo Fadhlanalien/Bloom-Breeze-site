@@ -139,19 +139,12 @@ def database():
                 file_path_video TEXT NOT NULL,
                 FOREIGN KEY (product_id) REFERENCES products(id) )''')
             
-            cur.execute('''SELECT current_database(),
-               current_user,
-               current_schema(),
-               inet_server_addr(),
-               inet_server_port()''')
-            print("DATABASE INFO:", cur.fetchone())
 
             conn.commit()
 
 
 @app.route('/')
 def home():
-    database()
     return render_template('home.html', selected='select')
 
 
@@ -331,7 +324,6 @@ def login():
                         flash("Incorrect Password")
                 else:
                     flash("Invalid username")
-    print("hello, this is just for test")
 
     return render_template('login.html')
 
