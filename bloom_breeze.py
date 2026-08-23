@@ -174,7 +174,7 @@ def admin_login():
 
 @app.route('/admin_signup', methods=['GET', 'POST'])
 def admin_signup():
-    admin_code = "bbadmin1125"
+    admin_code = os.environ.get("ADMIN_CODE")
     if request.method == 'POST':
         full_name = request.form['full_name']
         email = request.form['email']
@@ -186,6 +186,15 @@ def admin_signup():
         admin_name = request.form['admin_name']
         password = request.form['password']
         admin_verification_code = request.form['verification_code']
+        
+        admin_id = None
+        with get_db_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute("SELECT id FROM admins WHERE admin_name=%s", (admin_name,))
+                admin_id = cur.fetchone()
+                if admin_id:
+                    flash("admin_name already in use. please try another one")
+                    return redirect(url_for('admin_signup'))
 
         if admin_verification_code == admin_code:
             with get_db_connection() as conn:
@@ -200,7 +209,7 @@ def admin_signup():
             return redirect(url_for('admin_login'))
         else:
             flash("Invalid admin code")
-
+            
     return render_template('admin_signup.html')
 
 
@@ -306,7 +315,6 @@ def women_clothing():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    print("LOGIN FUNCTION CALLED", flush=True)
     
     if request.method == 'POST':
         username = request.form['username']
