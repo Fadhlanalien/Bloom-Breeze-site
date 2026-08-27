@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect, session, url_for
 import psycopg
 import os
+from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 
 app = Flask(__name__)
@@ -157,11 +158,11 @@ def admin_login():
 
         with get_db_connection() as conn:
             with conn.cursor() as cur:
-                cur.execute("SELECT id, password FROM admins WHERE admin_name=%s", (admin_name,))
+                cur.execute("SELECT id, hashed_password FROM admins WHERE admin_name=%s", (admin_name,))
                 admin_data = cur.fetchone()
 
                 if admin_data:
-                    if password == admin_data[1]:
+                    if check_password_hash(admin_data[1], password):
                         session['admin_id'] = admin_data[0]
                         return redirect(url_for('admin_dashboard'))
                     else:
@@ -187,6 +188,8 @@ def admin_signup():
         password = request.form['password']
         admin_verification_code = request.form['verification_code']
         
+        hashed_password = generate_password_hash(password)
+        print("hashed password: ", hashed_password)
         admin_id = None
         with get_db_connection() as conn:
             with conn.cursor() as cur:
@@ -201,9 +204,9 @@ def admin_signup():
                 with conn.cursor() as cur:
                     cur.execute(
                         "INSERT INTO admins (full_name, email, mobile_number, address_line01, address_line02, city, "
-                        "country, admin_name, password, admin_code) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+                        "country, admin_name, hashed_password, admin_code) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
                         (full_name, email, mobile_number, address_line01, address_line02, city, country, admin_name,
-                         password, admin_code))
+                         hashed_password, admin_code))
                     conn.commit()
                 flash("You have successfully signed-up, login to continue")
             return redirect(url_for('admin_login'))
