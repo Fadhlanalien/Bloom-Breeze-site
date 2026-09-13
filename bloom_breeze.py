@@ -65,7 +65,7 @@ def database():
                 city TEXT NOT NULL,
                 country TEXT NOT NULL,
                 admin_name TEXT NOT NULL UNIQUE,
-                password TEXT NOT NULL,
+                hashed_password TEXT NOT NULL,
                 admin_code TEXT NOT NULL)''')
 
             cur.execute('''CREATE TABLE IF NOT EXISTS users(
@@ -78,7 +78,7 @@ def database():
                         country TEXT NOT NULL,
                         email TEXT,
                         username TEXT NOT NULL UNIQUE,
-                        password TEXT NOT NULL)''')
+                        hashed_password TEXT NOT NULL)''')
 
             cur.execute('''CREATE TABLE IF NOT EXISTS products(
                 id SERIAL PRIMARY KEY,
@@ -189,7 +189,6 @@ def admin_signup():
         admin_verification_code = request.form['verification_code']
         
         hashed_password = generate_password_hash(password)
-        print("hashed password: ", hashed_password)
         admin_id = None
         with get_db_connection() as conn:
             with conn.cursor() as cur:
@@ -325,10 +324,10 @@ def login():
 
         with get_db_connection() as conn:
             with conn.cursor() as cur:
-                cur.execute("SELECT id, password FROM users WHERE username=%s", (username,))
+                cur.execute("SELECT id, hashed_password FROM users WHERE username=%s", (username,))
                 user_data = cur.fetchone()
                 if user_data:
-                    if password == user_data[1]:
+                    if check_password_hash(user_data[1], password):
                         session['user_id'] = user_data[0]
                         return redirect(url_for('dashboard'))
                     else:
@@ -352,15 +351,17 @@ def signup():
         username = request.form['username']
         password = request.form['password']
 
+        hashed_password = generate_password_hash(password)
+        print("Hashed password: ", hashed_password)
         with get_db_connection() as conn:
             with conn.cursor() as cur:
                 cur.execute("SELECT username FROM users WHERE username=%s", (username,))
                 if cur.fetchone() is None:
                     cur.execute(
                         "INSERT INTO users (full_name, mobile_number, address_line01, address_line02, city, "
-                        "country, email, username, password) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id",
+                        "country, email, username, hashed_password) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id",
                         (full_name, mobile_number, address_line01, address_line02, city, country, email, username,
-                         password))
+                         hashed_password))
                     user_id = cur.fetchone()[0]
 
                     cur.execute(
