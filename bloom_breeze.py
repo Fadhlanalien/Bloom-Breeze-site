@@ -410,12 +410,16 @@ def cart():
 @app.route('/view_products')
 def view_products():
 
-    product_id_list = []
+    if 'user_id' not in session:
+        flash("Please login first")
+        return redirect(url_for('login'))
+
     name = []
     detail = []
-    price = []
-    colour = []
+    # price = []
+    # colour = []
     file_path = []
+    product_ids = []
     products_dictionary = {}
 
     with get_db_connection() as conn:
@@ -427,37 +431,42 @@ def view_products():
                 for product_id_tuple in product:
                     product_id = product_id_tuple[0]
 
-                    cur.execute("SELECT id FROM products WHERE id=%s", (product_id,))
-                    product_id_tuple02 = cur.fetchall()
-                    if product_id_tuple02:
-                        product_id_list.append(product_id_tuple02[0][0])
+                    product_ids.append(product_id)
 
-                    cur.execute("SELECT name FROM products WHERE id=%s", (product_id,))
-                    product_name = cur.fetchall()
-                    if product_name:
-                        name.append(product_name[0][0])
+                    # cur.execute("SELECT id FROM products WHERE id=%s", (product_id,))
+                    # product_id_tuple02 = cur.fetchall()
+                    # if product_id_tuple02:
+                    #     product_id_list.append(product_id_tuple02[0][0])
 
-                    cur.execute("SELECT description FROM products WHERE id=%s", (product_id,))
-                    product_detail = cur.fetchall()
-                    if product_detail:
-                        detail.append(product_detail[0][0])
+                    cur.execute("SELECT name,description,file_path FROM products WHERE id=%s", (product_id,))
+                    product_data = cur.fetchone()
+                    if product_data:
+                        name.append(product_data[0])
+                        detail.append(product_data[1])
+                        file_path.append(product_data[2])
+                        
 
-                    cur.execute("SELECT colour FROM variants WHERE product_id=%s", (product_id,))
-                    product_colour = cur.fetchall()
-                    if product_colour:
-                        colour.append(product_colour[0][0])
+                    # cur.execute("SELECT description FROM products WHERE id=%s", (product_id,))
+                    # product_detail = cur.fetchall()
+                    # if product_detail:
+                    #     detail.append(product_detail[0][0])
 
-                    cur.execute("SELECT file_path FROM products WHERE id=%s", (product_id,))
-                    product_file_path = cur.fetchall()
-                    if product_file_path:
-                        file_path.append(product_file_path[0][0])
+                    # cur.execute("SELECT colour FROM variants WHERE product_id=%s", (product_id,))
+                    # product_colour = cur.fetchall()
+                    # if product_colour:
+                    #     colour.append(product_colour[0][0])
 
-                for k in range(len(product_id_list)):
-                    products_dictionary[product_id_list[k]] = {
-                        'product_id': product_id_list[k],
+                    # cur.execute("SELECT file_path FROM products WHERE id=%s", (product_id,))
+                    # product_file_path = cur.fetchall()
+                    # if product_file_path:
+                    #     file_path.append(product_file_path[0][0])
+
+                for k in range(len(product_ids)):
+                    products_dictionary[product_ids[k]] = {
+                        'product_id': product_ids[k],
                         'name': name[k],
                         'detail': detail[k],
-                        'colour': colour[k],
+                        # 'colour': colour[k],
                         'file_path': file_path[k]
                     }
             else:
