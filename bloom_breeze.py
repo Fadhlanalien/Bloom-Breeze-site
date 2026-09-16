@@ -314,6 +314,14 @@ def men_clothing():
 def women_clothing():
     return render_template('women_clothing.html', selected='women')
 
+@app.route('/special_offers')
+def special_offers():
+    return render_template('special_offers.html')
+
+@app.route('/bundle_deals')
+def bundle_deals():
+    return render_template('bundle_deals.html')
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
